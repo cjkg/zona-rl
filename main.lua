@@ -1,6 +1,6 @@
 function _init()
 	t,tani,fadeperc=0,0,0
-	_g=json_parse('{"objects":[{"name":"door","tiles":[58],"sfx":-1,"effect":48}],"mapani":{"ani1":[49,51],"ani2":[50,52]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2]}')
+	_g=json_parse('{"objects":[{"name":"door","tiles":[58],"sfx":1,"effect":48}],"mapani":{"ani1":[49,51],"ani2":[50,52]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2]}')
 
 	--★
 	debug={}
