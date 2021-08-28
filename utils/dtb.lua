@@ -4,9 +4,7 @@
 -- call this before you start using dtb.
 -- optional parameter is the number of lines that are displayed. default is 3.
 function dtb_init(numlines)
-    dtb_queu={}
-    dtb_queuf={}
-    dtb_numlines=3
+    dtb_queu,dtb_queuf,dtb_numlines={},{},3
     if numlines then
         dtb_numlines=numlines
     end
@@ -15,10 +13,7 @@ end
 
 -- this will add a piece of text to the queu. the queu is processed automatically.
 function dtb_disp(txt,callback)
-    local lines={}
-    local currline=""
-    local curword=""
-    local curchar=""
+    local lines,currline,curword,curchar={},"","",""
     local upt=function()
         if #curword+#currline>29 then
             add(lines,currline)
@@ -81,8 +76,7 @@ function dtb_update()
         if dtb_curline==0 then
             dtb_curline=1
         end
-        local dislineslength=#dtb_dislines
-        local curlines=dtb_queu[1]
+        local dislineslength,curlines=#dtb_dislines,dtb_queu[1]
         local curlinelength=#dtb_dislines[dislineslength]
         local complete=curlinelength>=#curlines[dtb_curline]
         if complete and dtb_curline>=#curlines then
@@ -120,8 +114,7 @@ end
 -- make sure to call this function everytime you draw.
 function dtb_draw()
     if #dtb_queu>0 then
-        local dislineslength=#dtb_dislines
-        local offset=0
+        local dislineslength,offset=#dtb_dislines,0
         if dtb_curline<dislineslength then
             offset=dislineslength-dtb_curline
         end

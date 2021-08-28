@@ -6,7 +6,7 @@ function draw_game()
 	cls()
 	map()
 	
-	_drawspr(getframe(p_ani),p_x*8,p_y*8,10,p_flip)
+	_drawspr(getframe(p_ani),player.x*8,player.y*8,10,p_flip)
 	dtb_draw()
 	
 	for f in all(float) do

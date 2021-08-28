@@ -1,5 +1,5 @@
 function bump(tile,destx,desty)
-	for obj in all(objects) do
+	for obj in all(mapobjects) do
 		if isin(tile,obj.tiles) then
 			sfx(obj.sfx)
 			
@@ -7,6 +7,10 @@ function bump(tile,destx,desty)
 				dtb_disp(obj.dialog)
 			end
 			
+			if obj.trap then
+				--obj.trap_effect
+			end
+
 			if obj._float then
 				for _f in all(obj._float) do
 					addfloat(_f.txt,
@@ -16,8 +20,8 @@ function bump(tile,destx,desty)
 				end
 			end
 								
-			if obj.effect then
-				mset(destx,desty,obj.effect)
+			if obj.tile_effect then
+				mset(destx,desty,obj.tile_effect)
 			end		
 			break
 		end

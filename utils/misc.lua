@@ -33,7 +33,7 @@ function copymap(x,y)
   		tle=mget(_x+x,_y+y)
    		mset(_x,_y,tle)
    		if tle==4 then
-   			p_x,p_y=_x,_y
+   			player.x,player.y=_x,_y
    		end
   	end
  	end
