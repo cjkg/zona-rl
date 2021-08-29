@@ -1,8 +1,21 @@
 function update_game()
-	for i=0,3 do
-		if btn(i) and #dtb_queu==0 then
-			moveplayer(dirx[i+1],diry[i+1])			
-			return
-		end
+	dobuttonbuff()
+	dobutton(buttonbuff)
+	buttonbuff=-1
+	checkend()
+end
+
+function checkend()
+	if win then
+		_upd=update_win
+		_drw=draw_win
+		fadeout(0.02)
+		return false
+	elseif player.hp<=0 then
+		_upd=update_lose
+		_drw=draw_lose
+		fadeout(0.02)
+		return false
 	end
+	return true
 end

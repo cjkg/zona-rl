@@ -1,25 +1,30 @@
-function add_item(_type,_x,_y,_c)
+--[[function additem(_type,_x,_y)
     --local item_info=item_objects[_type]
     local e = {
         x=_x,
         y=_y,
         name=type,
-        col=_c,
         item=true
     }   
     add(entities,e)
-end
+    return
+end]]   
 
-function add_mob(_type,_x,_y,_c)
-    --local mob_info=mob_objects[_type]
+function addmob(_type,_x,_y)
+    local mobinfo=mobobjects[_type]
     local m = {
-        x,_x,
-        y,_y,
+        x=_x,
+        y=_y,
         name=_type,
-        col=_c,
-        mob=true
+        hp=mobinfo.hp,
+        maxhp=mobinfo.maxhp,
+        ani=mobinfo.ani,
+        atk=mobinfo.atk,
+        task=ai_wait,
+        los=mobinfo.los
     }
     add(entities,m)
+    return m
 end
 
 
@@ -48,5 +53,7 @@ end
 
     Bar - the borscht
     Leaving the zone?
+    "graying out" explored but not in los
+    reacquire target
     I 
 ]]

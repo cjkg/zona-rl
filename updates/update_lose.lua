@@ -1,4 +1,4 @@
-function update_gameover()
+function update_lose()
 	if btnp(❎) then
 		fadeout()
 		startgame()

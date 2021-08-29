@@ -1,6 +1,7 @@
 function moveplayer(dx,dy)
 	local destx,desty=player.x+dx,player.y+dy
 	local tile=mget(destx,desty)
+	
 	p_t=0
 	_upd=update_player_turn
 	
@@ -9,15 +10,20 @@ function moveplayer(dx,dy)
 		sfx(2)		
 	elseif fget(tile,1) then
 		bump(tile,destx,desty)
+	elseif getmob(destx,desty) then
+		hitmob(player,getmob(destx,desty))
 	else
 		player.x+=dx
 		player.y+=dy
 		
 		if dx<0 then
-			p_flip=true
+			player.flip=true
 		elseif dx>0 then
-			p_flip=false
+			player.flip=false
 		end
 		sfx(0)
 	end
+	refog()
+	unfog()
+	
 end
