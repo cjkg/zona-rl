@@ -7,6 +7,7 @@ function update_player_turn()
 		if checkend() then
 			doai()
 		end
+		calcdist(player.x,player.y)
 		step()
 		
 	end

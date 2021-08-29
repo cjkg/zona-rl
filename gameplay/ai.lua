@@ -17,7 +17,6 @@ function ai_wait(m)
         
         addfloat("!",m.x*8+2,m.y*8,10)
         sfx(3)
-        
     end
 end
    
@@ -39,20 +38,26 @@ function ai_attack(m)
             addfloat("?",m.x*8+2,m.y*8,10)
         else 
             local bdst,bx,by=999,0,0
+            calcdist(m.tx,m.ty)
             for i=1,4 do
                 local dx,dy=dirx[i],diry[i]
                 local tx,ty=m.x+dx,m.y+dy
                 if iswalkable(tx,ty,"checkmobs") then
-                    local dst=dist(tx,ty,m.tx,m.ty)
+                    local dst=distmap[tx][ty]
                     if dst<bdst then
-                        bdst,bx,by=dst,dx,dy
+                        cand={}
+                        bdst=dst
+                    end
+                    if dst==bdst then
+                        add(cand,{x=dx,y=dy})
                     end
                 end
             end
-            mobwalk(m,bx,by)
-            _upd=update_ai_turn
+            if #cand>0 then
+                local c=rnd(cand)
+                mobwalk(m,c.x,c.y)
+            end 
             --todo: re-aquire target?
-            p_t=0
         end
     end
 end
