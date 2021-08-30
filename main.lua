@@ -32,19 +32,17 @@ end
 
 function startgame()
 	dirx,diry,mapani,dpal,p_ani,mapobjects,mobobjects,buttonbuff,fog=_g.dirx,_g.diry,_g.mapani,_g.dpal,_g.p_ani,_g.mapobjects,_g.mobobjects,-1,blankmap(1)
-	inv={{
+	inv={}--[[{{
 		x=5,
 		y=8,
 		name="gun",
 		item=true,
 		use_options={"equip","throw","trash"}
-		}}
+		}}]]
 
 	menuitem(1,"inventory",function() showinventory() end)	
-	tt_ammo=16
-	slots=3
-	maxslots=6
-	rubles=0
+
+	tt_ammo,slots,maxslots,rubles=16,3,6,0
 
 	_upd=update_start
 	_drw=draw_start
@@ -52,7 +50,6 @@ function startgame()
 	entities={}
 	player=addmob("player",1,2)
 	--delete/review
-	use_options={"use","trash"}
 	unfog()
 	addmob("candycorn",4,6)
 	addmob("candycorn",3,6)

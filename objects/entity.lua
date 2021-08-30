@@ -4,7 +4,10 @@
         x=_x,
         y=_y,
         name=type,
-        item=true
+        item=true,
+        consumable=item_info.consumable,
+        equippable=item_info.equippable,
+        throwable=item_info.throwable
     }   
     add(entities,e)
     return
