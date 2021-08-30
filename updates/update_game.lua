@@ -2,7 +2,7 @@ function update_game()
 	dobuttonbuff()
 	dobutton(buttonbuff)
 	buttonbuff=-1
-	checkend()
+	checkend()	
 end
 
 function checkend()

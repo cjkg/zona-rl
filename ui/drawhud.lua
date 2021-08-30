@@ -6,5 +6,6 @@ function drawhud()
     end
     
     rectfill2(0,hp_y-1,40,8,0)
-    oprint8("HP: "..player.hp.."/"..player.maxhp.."  makarov: 8",2,hp_y,11,5)    
+    oprint8("hp: "..player.hp.."/"..player.maxhp.."  tt-33: 8",2,hp_y,11,5)    
+    --delete/review change color when injured
 end

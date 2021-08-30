@@ -43,21 +43,16 @@ function ai_attack(m)
                 local dx,dy=dirx[i],diry[i]
                 local tx,ty=m.x+dx,m.y+dy
                 if iswalkable(tx,ty,"checkmobs") then
-                    local dst=distmap[tx][ty]
+                    local dst=distmap[tx][ty]+rnd()
                     if dst<bdst then
-                        cand={}
-                        bdst=dst
-                    end
-                    if dst==bdst then
-                        add(cand,{x=dx,y=dy})
+                        bdst,bx,by=dst,dx,dy
                     end
                 end
             end
-            if #cand>0 then
-                local c=rnd(cand)
-                mobwalk(m,c.x,c.y)
-            end 
+            mobwalk(m,bx,by)
+            _upd=update_ai_turn
             --todo: re-aquire target?
+            p_t=0
         end
     end
 end
