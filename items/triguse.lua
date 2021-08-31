@@ -8,8 +8,7 @@ function triguse()
         inv[inv_cursor]=nil
         showinventory()
     elseif verb=="throw" then
-        throw(inv[inv_cursor])
-        _upd=update_throw
+        _upd=update_throw --update pturn?
         _drw=draw_game
     end
     update_stats()

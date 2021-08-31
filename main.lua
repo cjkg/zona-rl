@@ -24,7 +24,7 @@ function _draw()
 
 	----delete/review
 	cursor(4,4)
-	color(7)
+	color(11)
 	for txt in all(debug) do
 		print(txt)
 	end
@@ -46,7 +46,7 @@ function startgame()
 			item=true,
 			heal=5,
 			effect="heal",
-			use_options={"use","trash"}
+			use_options={"use","throw","trash"}
 		}
 	
 	}

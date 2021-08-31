@@ -9,6 +9,9 @@ function update_throw()
     if b==4 then
         _upd=update_game
     elseif b==5 then
+        sfx(4)
         throw()
+        inv[inv_cursor]=nil
+        _upd=update_game
     end
 end

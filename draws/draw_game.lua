@@ -25,6 +25,7 @@ function draw_game()
 
 	if _upd==update_throw or _upd==update_shoot then
 		if (_upd==update_shoot) pal(7,8)
+		--delete/review laser sight for gun
 		palt(11,true)
 		spr(throw_dir+112,player.x*8+sin(t/30)*throw_dx+throw_dx*8,
 			player.y*8+sin(t/30)*throw_dy+throw_dy*8,
