@@ -6,7 +6,7 @@ function takeitem(itm)
 end
 
 function freeslot(set)
-	for i=1,slots do
+	for i=1,slots do	
 		if not set[i] then
 			return i
 		end

@@ -32,28 +32,39 @@ end
 
 function startgame()
 	dirx,diry,mapani,dpal,p_ani,mapobjects,mobobjects,buttonbuff,fog=_g.dirx,_g.diry,_g.mapani,_g.dpal,_g.p_ani,_g.mapobjects,_g.mobobjects,-1,blankmap(1)
-	inv={}--[[{{
+	inv={{
 		x=5,
 		y=8,
 		name="gun",
 		item=true,
 		use_options={"equip","throw","trash"}
-		}}]]
+		},
+		{
+			x=5,
+			y=8,
+			name="red herb",
+			item=true,
+			heal=5,
+			effect="heal",
+			use_options={"use","trash"}
+		}
+	
+	}
 
-	menuitem(1,"inventory",function() showinventory() end)	
+
+
+	
 
 	tt_ammo,slots,maxslots,rubles=16,3,6,0
-
+	throw_dir,throw_dx,throw_dy=0,0,0
 	_upd=update_start
 	_drw=draw_start
 	float={}
 	entities={}
 	player=addmob("player",1,2)
+	addmob("candycorn",4,4)
 	--delete/review
 	unfog()
-	addmob("candycorn",4,6)
-	addmob("candycorn",3,6)
-	addmob("candycorn",3,4)	
 	rads={}
 	for i=1,10 do
   		add(rads,{
