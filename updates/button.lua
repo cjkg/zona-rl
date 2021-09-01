@@ -2,6 +2,8 @@ function dobutton(button)
 	if button<0 then return end
 	if button<4 then
 		moveplayer(dirx[button+1],diry[button+1])
+	elseif button==5 then
+		_upd=update_shoot
 	end
 	-- menu button
 end

@@ -1,6 +1,6 @@
 function _init()
 	t,tani,fadeperc=0,0,0
-	_g=json_parse('{"mobobjects":{"candycorn":{"hp":5,"maxhp":5,"ani":[10,10,11,11],"atk":1,"los":3},"player":{"hp":10,"maxhp":10,"ani":[1,1,2,2],"atk":1,"los":5}},"mapobjects":[{"name":"door","tiles":[52],"sfx":1,"tile_effect":48}],"mapani":{"ani1":[],"ani2":[]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2]}')
+	_g=json_parse('{"mobobjects":{"candycorn":{"hp":5,"maxhp":5,"ani":[10,10,11,11],"atk":1,"los":3},"player":{"hp":10,"maxhp":10,"ani":[1,1,2,2],"atk":1,"los":5}},"mapobjects":[{"name":"door","tiles":[52],"sfx":1,"tile_effect":48}],"mapani":{"ani1":[],"ani2":[]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2],"p_shoot_ani":[4,4,5,5]}')
 
 	----delete/review
 	cpumax,memmax,debug=0,0,{}
@@ -31,11 +31,13 @@ function _draw()
 end
 
 function startgame()
-	dirx,diry,mapani,dpal,p_ani,mapobjects,mobobjects,buttonbuff,fog=_g.dirx,_g.diry,_g.mapani,_g.dpal,_g.p_ani,_g.mapobjects,_g.mobobjects,-1,blankmap(1)
+	--review these to see if the dot call would just be cheaper. I think there need to be 4 of each to make it
+	dirx,diry,mapani,dpal,p_ani,p_shoot_ani,mapobjects,mobobjects,buttonbuff,fog=_g.dirx,_g.diry,_g.mapani,_g.dpal,_g.p_ani,_g.p_shoot_ani,_g.mapobjects,_g.mobobjects,-1,blankmap(1)
 	inv={{
 		x=5,
 		y=8,
 		name="gun",
+		desc={"an old tokarev"},
 		item=true,
 		use_options={"equip","throw","trash"}
 		},
@@ -43,6 +45,7 @@ function startgame()
 			x=5,
 			y=8,
 			name="red herb",
+			desc={"a zone herb that", "heals 5 hp"},
 			item=true,
 			heal=5,
 			effect="heal",
@@ -50,12 +53,8 @@ function startgame()
 		}
 	
 	}
-
-
-
-	
-
-	tt_ammo,slots,maxslots,rubles=16,3,6,0
+	p_t=0
+	tt_ammo,slots,maxslots,rubles=5,3,6,1000
 	throw_dir,throw_dx,throw_dy=0,0,0
 	_upd=update_start
 	_drw=draw_start

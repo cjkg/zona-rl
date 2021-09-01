@@ -1,5 +1,5 @@
 function update_inventory()
-if btnp(2) then
+    if btnp(2) then
         inv_cursor-=1
     elseif btnp(3) then
         inv_cursor+=1
