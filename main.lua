@@ -54,8 +54,9 @@ function startgame()
 	
 	}
 	p_t=0
+	gun="tarkarov"
 	tt_ammo,slots,maxslots,rubles=5,3,6,1000
-	throw_dir,throw_dx,throw_dy=0,0,0
+	throw_dir,throw_dx,throw_dy=1,2,2
 	_upd=update_start
 	_drw=draw_start
 	float={}

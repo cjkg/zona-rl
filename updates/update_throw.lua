@@ -1,4 +1,4 @@
-function update_throw()
+function update_throw() 
     local b=getbutton()
     if b>=0 and b<=3 then
         throw_dir=b
