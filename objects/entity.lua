@@ -24,7 +24,9 @@ function addmob(_type,_x,_y)
         ani=mobinfo.ani,
         atk=mobinfo.atk,
         task=ai_wait,
-        los=mobinfo.los
+        los=mobinfo.los,
+        atk_type="whip",
+        hazards=whip_hazard
     }
     add(entities,m)
     return m

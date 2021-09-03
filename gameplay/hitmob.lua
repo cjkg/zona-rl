@@ -7,6 +7,7 @@ function hitmob(atkm,defm,dmg)
     if (atkm==player) col=10
     addfloat("-"..dmg,defm.x*8-1,defm.y*7,col)
     if defm.hp <= 0 then
+        defm.hazards={}
         del(entities,defm)
     end
 end

@@ -12,6 +12,12 @@ function draw_game()
 	for e in all(entities) do
 		if cansee(player,e) then 
 			spr(getframe(e.ani),e.x*8,e.y*8,1,1,e.flip)
+			--delete/review: put in own function
+			if e.hazards then
+				for h in all(e.hazards) do
+					spr(h.sprt,h.x,h.y)
+				end	
+			end
 		end
 	end
 	
@@ -23,14 +29,20 @@ function draw_game()
 		end
 	end
 
+
+	--delete/review: put in own function
 	if _upd==update_throw or _upd==update_shoot then
+		if _upd==update_shoot then
+			tx,ty=throwtile()
+			pset(tx*8+3,ty*8+3,8)
+		end	
+
 		--delete/review laser sight for gun
 		palt(11,true)
 		spr(throw_dir+112,player.x*8+sin(t/30)*throw_dx+throw_dx*8,
 			player.y*8+sin(t/30)*throw_dy+throw_dy*8,
 			1,
 			1)
-		line()
 		pal()
 	end 
 

@@ -1,6 +1,9 @@
 function _init()
 	t,tani,fadeperc=0,0,0
-	_g=json_parse('{"mobobjects":{"candycorn":{"hp":5,"maxhp":5,"ani":[10,10,11,11],"atk":1,"los":3},"player":{"hp":10,"maxhp":10,"ani":[1,1,2,2],"atk":1,"los":5}},"mapobjects":[{"name":"door","tiles":[52],"sfx":1,"tile_effect":48}],"mapani":{"ani1":[],"ani2":[]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2],"p_shoot_ani":[4,4,5,5]}')
+	_g=json_parse('{"mobobjects":{"candycorn":{"hp":5,"maxhp":5,"ani":[10,10,11,11],"atk":1,"los":0},"player":{"hp":10,"maxhp":10,"ani":[1,1,2,2],"atk":1,"los":100}},"mapobjects":[{"name":"door","tiles":[52],"sfx":1,"tile_effect":48}],"hazards":{"cross_hazard":{"name":"burner","sprt":12,"hp":-1},"spiral_hazard":[{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1}],"whip_hazard":[{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1}]},"mapani":{"ani1":[],"ani2":[]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2],"p_shoot_ani":[4,4,5,5]}')
+	cross_cycle={{x=3,y=0},{x=0,y=3},{x=-3,y=0},{x=0,y=-3}}
+	spiral_pos={{x=2,y=2},{x=2,y=-2},{x=-2,y=-2},{x=-2,y=2},{x=1,y=1},{x=1,y=-1},{x=-1,y=-1},{x=-1,y=1}}
+	whip_pos={{x=0,y=1},{x=0,y=2},{x=0,y=3},{x=0,y=-1},{x=0,y=-2},{x=0,y=-3}}
 
 	----delete/review
 	cpumax,memmax,debug=0,0,{}
@@ -32,7 +35,7 @@ end
 
 function startgame()
 	--review these to see if the dot call would just be cheaper. I think there need to be 4 of each to make it
-	dirx,diry,mapani,dpal,p_ani,p_shoot_ani,mapobjects,mobobjects,buttonbuff,fog=_g.dirx,_g.diry,_g.mapani,_g.dpal,_g.p_ani,_g.p_shoot_ani,_g.mapobjects,_g.mobobjects,-1,blankmap(1)
+	turn,dirx,diry,mapani,dpal,p_ani,p_shoot_ani,mapobjects,mobobjects,buttonbuff,fog=1,_g.dirx,_g.diry,_g.mapani,_g.dpal,_g.p_ani,_g.p_shoot_ani,_g.mapobjects,_g.mobobjects,-1,blankmap(0)
 	inv={{
 		x=5,
 		y=8,
@@ -54,18 +57,19 @@ function startgame()
 	
 	}
 	p_t=0
-	gun="tarkarov"
-	tt_ammo,slots,maxslots,rubles=5,3,6,1000
+	tt_ammo,slots,maxslots,rubles=99,3,6,1000
+	whip_hazard=_g.hazards.whip_hazard
 	throw_dir,throw_dx,throw_dy=1,2,2
 	_upd=update_start
 	_drw=draw_start
 	float={}
 	entities={}
 	player=addmob("player",1,2)
-	addmob("candycorn",4,4)
+	
 	--delete/review
 	unfog()
 	rads={}
+	candy=addmob("candycorn",8,8)
 	for i=1,10 do
   		add(rads,{
    			x=rnd(128),

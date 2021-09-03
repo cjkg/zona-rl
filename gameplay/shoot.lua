@@ -2,12 +2,13 @@ function shoot()
     local tx,ty=throwtile()
     local mob = getmob(tx,ty)
     if mob then
-        
-            hitmob(player,mob,3)
-            sfx(6)
-            tt_ammo-=1
-            debug[5]=mob.hp
-        
+        hitmob(player,mob,3)
+        sfx(6)
+        tt_ammo-=1
+        debug[5]=mob.hp
+    else
+        sfx(6)
+        tt_ammo-=1
     end
 end
 
