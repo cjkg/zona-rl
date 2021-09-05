@@ -1,9 +1,7 @@
 function update_game()
 	menuitem(1,"inventory",function() showinventory() end)	
 	update_stats()
-	dobuttonbuff()
-	dobutton(buttonbuff)
-	buttonbuff=-1
+	dobutton(getbutton())
 	checkend()	
 end
 

@@ -49,6 +49,7 @@ function _dtb_clean()
     for i=1,dtb_numlines do
         add(dtb_dislines,"")
     end
+    --delete/review combine 
     dtb_curline=0
     dtb_ltime=0
 end

@@ -6,9 +6,9 @@ function draw_game()
 	debug[2]=cpumax
 	if fadeperc==1 then return end --fixes flicker
 
-
 	cls()
 	map()
+
 	for h in all(hazards) do
 		if cansee(player,h) then
 			spr(h.sprt,h.x*8,h.y*8,1,1)

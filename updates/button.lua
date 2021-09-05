@@ -2,15 +2,10 @@ function dobutton(button)
 	if button<0 then return end
 	if button<4 then
 		moveplayer(dirx[button+1],diry[button+1])
+		poke(0x5f5d,10)
 	elseif button==5 then
 		_upd=update_shoot
-	end
-	-- menu button
-end
-
-function dobuttonbuff()
-	if buttonbuff==-1 then
-		buttonbuff=getbutton()
+		poke(0x5f5d,10)
 	end
 end
 

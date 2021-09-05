@@ -20,28 +20,28 @@ function ai_wait(m)
     end
 end
    
-function ai_attack(m)  
-    if dist(m.x,m.y,player.x,player.y)==1 then
+function ai_attack(m) 
+    px,py,mx,my=player.x,player.y,m.x,m.y
+    if dist(mx,my,px,py)==1 then
         --attack player
-        dx,dy=player.x-m.x,player.y-m.y
+        dx,dy=px-mx,py-my
         hitmob(m,player)
-        sfx(3)
-        p_t=0                                                       
+        sfx(3)                                                    
     else
         --move to player
         if cansee(m,player) then
-            m.tx,m.ty=player.x,player.y
+            m.tx,m.ty=px,py
         end
         
-        if m.x==m.tx and m.y==m.ty then
+        if mx==m.tx and my==m.ty then
             m.task=ai_wait
-            addfloat("?",m.x*8+2,m.y*8,10)
+            addfloat("?",mx*8+2,my*8,10)
         else 
             local bdst,bx,by=999,0,0
             calcdist(m.tx,m.ty)
             for i=1,4 do
                 local dx,dy=dirx[i],diry[i]
-                local tx,ty=m.x+dx,m.y+dy
+                local tx,ty=mx+dx,my+dy
                 if iswalkable(tx,ty,"checkmobs") then
                     local dst=distmap[tx][ty]+rnd()
                     if dst<bdst then
@@ -52,7 +52,6 @@ function ai_attack(m)
             mobwalk(m,bx,by)
             _upd=update_ai_turn
             --todo: re-aquire target?
-            p_t=0
         end
     end
 end

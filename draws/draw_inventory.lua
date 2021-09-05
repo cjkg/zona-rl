@@ -1,12 +1,10 @@
 function draw_inventory()
     --delete/review --the cool color changer requires 20! tokens
-    local c1,c2
+    local c1,c2=8,9
     if player.hp>=6 then
         c1,c2=3,11
     elseif player.hp>=3 then
         c1,c2=9,10
-    else
-        c1,c2=8,9
     end
 
     rectfill2(0,0,128,128,0)
