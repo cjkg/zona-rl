@@ -22,7 +22,7 @@ end
    
 function ai_attack(m)  
     if dist(m.x,m.y,player.x,player.y)==1 then
-     --attack player
+        --attack player
         dx,dy=player.x-m.x,player.y-m.y
         hitmob(m,player)
         sfx(3)

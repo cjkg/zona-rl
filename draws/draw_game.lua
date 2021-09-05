@@ -9,17 +9,19 @@ function draw_game()
 
 	cls()
 	map()
+	for h in all(hazards) do
+		if cansee(player,h) then
+			spr(h.sprt,h.x*8,h.y*8,1,1)
+		end
+	end
+
 	for e in all(entities) do
 		if cansee(player,e) then 
 			spr(getframe(e.ani),e.x*8,e.y*8,1,1,e.flip)
 			--delete/review: put in own function
-			if e.hazards then
-				for h in all(e.hazards) do
-					spr(h.sprt,h.x,h.y)
-				end	
-			end
 		end
 	end
+	
 	
 	for x=0,15 do
 		for y=0,15 do
@@ -34,7 +36,14 @@ function draw_game()
 	if _upd==update_throw or _upd==update_shoot then
 		if _upd==update_shoot then
 			tx,ty=throwtile()
-			pset(tx*8+3,ty*8+3,8)
+			if tx<player.x then
+				player.flip=true
+			else
+				player.flip=false
+			end
+			if dist(player.x,player.y,tx,ty)<=player.los then
+				pset(tx*8+3,ty*8+3,8)
+			end
 		end	
 
 		--delete/review laser sight for gun

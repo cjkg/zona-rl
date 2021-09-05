@@ -2,29 +2,12 @@ function dist(fx,fy,tx,ty)
 	return sqrt((fx-tx)^2+(fy-ty)^2)
 end
 
-function iswalkable2(x,y,mode)
-	local mode=mode or ""
- 	if inbounds(x,y) then
-  		local tle=mget(x,y)
-  		if mode=="sight" then
-			return not fget(tle,2)
-  		else
-	 		if not fget(tle,0) then
-	   			if mode=="checkmobs" then
-	    			return not getmob(x,y)
-	   			end
-	   			return true
-	  		end
-		end
- 	end
- 	return false
-end
 function iswalkable(x,y,mode)
-	local mode = mode or "test"
+	local mode = mode or ""
 	if inbounds(x,y) then
 	 	local tle=mget(x,y)
 	 	if mode=="sight" then
-	  		return not fget(tle,2)
+	  		return fget(tle,2)
 	 	else
 	  		if not fget(tle,0) then
 	   			if mode=="checkmobs" then
@@ -80,7 +63,7 @@ function los(x1,y1,x2,y2)
 	
 	local err,e2=dx-dy
 	while not(x1==x2 and y1==y2) do
-		if not frst and not iswalkable(x1,y1,"sight") then return false end
+		if not frst and iswalkable(x1,y1,"sight") then return false end
 		frst,e2=false,err*2
 		if e2>-dy then
 			err-=dy
@@ -155,18 +138,18 @@ function refogtile(x,y)
 end
 
 function calcdist(tx,ty)
-	local cand,step,candnew={},0
+	local cand,_step,candnew={},0
 	distmap=blankmap(-1)
 	add(cand,{x=tx,y=ty})
 	distmap[tx][ty]=0
 	repeat
-		step+=1
+		_step+=1
 	 	candnew={}
 	 	for c in all(cand) do
 	  		for d=1,4 do
 		   		local dx,dy=c.x+dirx[d],c.y+diry[d]
 		   		if inbounds(dx,dy) and distmap[dx][dy]==-1 then
-					distmap[dx][dy]=step
+					distmap[dx][dy]=_step
 					if iswalkable(dx,dy) then
 				 		add(candnew,{x=dx,y=dy})
 					end

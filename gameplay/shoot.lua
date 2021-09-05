@@ -4,11 +4,10 @@ function shoot()
     if mob then
         hitmob(player,mob,3)
         sfx(6)
-        tt_ammo-=1
-        debug[5]=mob.hp
+        ammo-=1
     else
         sfx(6)
-        tt_ammo-=1
+        ammo-=1
     end
 end
 

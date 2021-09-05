@@ -9,8 +9,9 @@ function update_shoot()
     throw_dy=diry[throw_dir+1]
     if btnp(4) then
         _upd=update_game
+        player.ani=p_ani
     elseif btnp(5) then
-        if tt_ammo>0 then
+        if ammo>0 then
             shoot()
             _upd=update_player_turn
         else
