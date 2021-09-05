@@ -1,9 +1,9 @@
 function draw_game()
 	----delete/review
-	if (cpumax<stat(1)) cpumax=stat(1)
+	--[[if (cpumax<stat(1)) cpumax=stat(1)
 	if (memmax<stat(0)) memmax=stat(0)
 	debug[1]=memmax
-	debug[2]=cpumax
+	debug[2]=cpumax]]
 	if fadeperc==1 then return end --fixes flicker
 
 	cls()
@@ -22,7 +22,6 @@ function draw_game()
 		end
 	end
 	
-	
 	for x=0,15 do
 		for y=0,15 do
 			if fog[x][y]==1 then
@@ -31,9 +30,9 @@ function draw_game()
 		end
 	end
 
-
 	--delete/review: put in own function
 	if _upd==update_throw or _upd==update_shoot then
+		local col=_upd==update_throw and 7 or 8
 		if _upd==update_shoot then
 			tx,ty=throwtile()
 			if tx<player.x then
@@ -42,12 +41,13 @@ function draw_game()
 				player.flip=false
 			end
 			if dist(player.x,player.y,tx,ty)<=player.los then
-				pset(tx*8+3,ty*8+3,8)
+				pset(tx*8+3,ty*8+3,col)
 			end
 		end	
-
+		
 		--delete/review laser sight for gun
 		palt(11,true)
+		pal(7,col)
 		spr(throw_dir+112,player.x*8+sin(t/30)*throw_dx+throw_dx*8,
 			player.y*8+sin(t/30)*throw_dy+throw_dy*8,
 			1,
@@ -57,8 +57,10 @@ function draw_game()
 
 	dtb_draw()
 	drawhud()	
-
+	
 	for f in all(float) do	
 		oprint8(f.txt,f.x,f.y,f.c,0)
 	end
+
+	doshake()
 end

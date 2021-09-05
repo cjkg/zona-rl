@@ -1,6 +1,6 @@
 function draw_inventory()
     --delete/review --the cool color changer requires 20! tokens
-    local c1,c2=8,9
+    --[[local c1,c2=8,9
     if player.hp>=6 then
         c1,c2=3,11
     elseif player.hp>=3 then
@@ -23,8 +23,8 @@ function draw_inventory()
     spr(109,4,59,3,2)
     print(ammo,6,71,7)
     print("items",40,36,6)
-    print(rubles,6,80,7)
-    print("p.",24,80,7)
+    print(rubles.." "..chr(80)..".",6,80,7)
+    --print(chr(80)..".",24,80,7)
     local item_y=43
     for i=1,maxslots do
         if i==inv_cursor then
@@ -47,6 +47,6 @@ function draw_inventory()
             print("locked",50,item_y,13)
         end
         item_y+=7
-    end
+    end]]
 end
 

@@ -1,6 +1,6 @@
 function _init()
 	t,fadeperc=0,0
-	_g=json_parse('{"mobobjects":{"candycorn":{"hp":5,"maxhp":5,"ani":[10,10,11,11],"atk":1,"los":3,"atk_type":"whip"},"player":{"hp":10,"maxhp":10,"ani":[1,1,2,2],"atk":1,"los":5}},"mapobjects":[{"name":"door","tiles":[52],"sfx":1,"tile_effect":48}],"hazard_types":{"cross":{"name":"burner","sprt":12,"hp":-1},"spiral":[{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1}],"whip":[{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1}]},"mapani":{"ani1":[],"ani2":[]},"hazard_pos":{"cross_pos":[{"x":3,"y":0},{"x":0,"y":3},{"x":-3,"y":0},{"x":0,"y":-3}],"spiral_pos":[{"x":2,"y":2},{"x":2,"y":-2},{"x":-2,"y":-2},{"x":-2,"y":2},{"x":1,"y":1},{"x":1,"y":-1},{"x":-1,"y":-1},{"x":-1,"y":1}],"whip_pos":[{"x":0,"y":1},{"x":0,"y":2},{"x":0,"y":3},{"x":0,"y":-1},{"x":0,"y":-2},{"x":0,"y":-3}]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2],"p_shoot_ani":[4,4,5,5]}')
+	_g=json_parse('{"mobobjects":{"candycorn":{"hp":5,"maxhp":5,"ani":[10,10,11,11],"atk":1,"los":3,"atk_type":"cross"},"player":{"hp":10,"maxhp":10,"ani":[1,1,2,2],"atk":1,"los":5}},"mapobjects":[{"name":"door","tiles":[52],"sfx":1,"tile_effect":48}],"hazard_types":{"cross":[{"name":"burner","sprt":12,"hp":-1}],"spiral":[{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1}],"whip":[{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1},{"name":"burner","sprt":12,"hp":-1}]},"mapani":{"ani1":[],"ani2":[]},"hazard_pos":{"cross_pos":[{"x":3,"y":0},{"x":0,"y":3},{"x":-3,"y":0},{"x":0,"y":-3}],"spiral_pos":[{"x":2,"y":2},{"x":2,"y":-2},{"x":-2,"y":-2},{"x":-2,"y":2},{"x":1,"y":1},{"x":1,"y":-1},{"x":-1,"y":-1},{"x":-1,"y":1}],"whip_pos":[{"x":0,"y":1},{"x":0,"y":2},{"x":0,"y":3},{"x":0,"y":-1},{"x":0,"y":-2},{"x":0,"y":-3}]},"dpal":[0,1,1,2,1,13,6,4,4,9,3,13,1,13,14],"dirx":[-1,1,0,0,1,1,-1,-1],"diry":[0,0,-1,1,-1,1,1,-1],"p_ani":[1,1,2,2],"p_shoot_ani":[4,4,5,5]}')
 
 	----delete/review 58 tokens for debug
 	cpumax,memmax,debug=0,0,{}
@@ -34,7 +34,7 @@ function startgame()
 	--review these to see if the dot call would just be cheaper. I think there need to be 4 of each to make it
 	turn,dirx,diry,dpal,p_ani,p_shoot_ani,mapobjects,mobobjects,fog,hazard_types,hazard_pos=1,_g.dirx,_g.diry,_g.dpal,_g.p_ani,_g.p_shoot_ani,_g.mapobjects,_g.mobobjects,blankmap(1),_g.hazard_types,_g.hazard_pos
 	inv,ammo,slots,maxslots,rubles={},99,3,6,1000
-	
+	shake=0
 	_upd=update_start
 	_drw=draw_start
 	float,entities,hazards,rads,throw_dir,throw_dx,throw_dy={},{},{},{},1,2,2

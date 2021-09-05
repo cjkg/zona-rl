@@ -12,8 +12,7 @@ end
    
 function ai_wait(m)
     if cansee(m,player) then
-        m.task=ai_attack
-        m.tx,m.ty=player.x,player.y
+        m.task,m.tx,m.ty=ai_attack,player.x,player.y
         
         addfloat("!",m.x*8+2,m.y*8,10)
         sfx(3)
