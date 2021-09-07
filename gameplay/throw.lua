@@ -5,7 +5,7 @@ function throw()
         sfx(5)
         if effect=="heal" then
             heal(mob,inv[inv_cursor].heal)
-        else
+        --else
             --todo hitmob(inv[inv_cursor],"throwdmg") local variable for inv[inv_cursor] save tokens?
         end
     end

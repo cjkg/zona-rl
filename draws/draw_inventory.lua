@@ -1,6 +1,6 @@
 function draw_inventory()
     --delete/review --the cool color changer requires 20! tokens
-    --[[local c1,c2=8,9
+    local c1,c2=8,9
     if player.hp>=6 then
         c1,c2=3,11
     elseif player.hp>=3 then
@@ -10,7 +10,7 @@ function draw_inventory()
     rectfill2(0,0,128,128,0)
     rectfill2(34,30,92,59,6)
     rectfill2(36,32,88,55,5)
-    --delete/review
+    --delete/reviews
 	rectfill2(4,36,28,20,6)
     pal(6,c1)
     pal(5,c2)
@@ -47,6 +47,6 @@ function draw_inventory()
             print("locked",50,item_y,13)
         end
         item_y+=7
-    end]]
+    end
 end
 

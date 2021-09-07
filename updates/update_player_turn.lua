@@ -5,7 +5,6 @@ function update_player_turn()
 	end
 	calcdist(player.x,player.y)
 	
-	update_hazards()
 	step()
 	turn+=1
 end

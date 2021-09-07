@@ -3,12 +3,9 @@ function shoot()
     local mob = getmob(tx,ty)
     if mob then
         hitmob(player,mob,3)
-        sfx(6)
-        ammo-=1
-    else
-        sfx(6)
-        ammo-=1
     end
+    sfx(6)
+    ammo-=1
 end
 
 function throwtile()

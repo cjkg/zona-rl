@@ -7,7 +7,7 @@ function iswalkable(x,y,mode)
 	if inbounds(x,y) then
 	 	local tle=mget(x,y)
 	 	if mode=="sight" then
-	  		return fget(tle,2)
+	  		return not fget(tle,2)
 	 	else
 	  		if not fget(tle,0) then
 	   			if mode=="checkmobs" then
@@ -18,19 +18,6 @@ function iswalkable(x,y,mode)
 	 	end
 	end
 	return false
-end
-
-function copymap(x,y)
-	local tle
-	for _x=0,15 do
-		for _y=0,15 do
-			tle=mget(_x+x,_y+y)
-			mset(_x,_y,tle)
-			if tle==4 then
-				player.x,player.y=_x,_y
-			end
-		end
- 	end
 end
 
 function getmob(x,y)
@@ -48,12 +35,13 @@ end
 
 function los(x1,y1,x2,y2)
 	local frst,sx,sy,dx,dy=true
-	if dist(x1,y1,x2,y2)<=1.42 then return true end
+	
+	if dist(x1,y1,x2,y2)==1 then return true end
 	
 	if x1<x2 then
 		sx,dx=1,x2-x1
 	else
-	 	sx,dx=-1,x1-x2
+		sx,dx=-1,x1-x2
 	end
 	if y1<y2 then
 	 	sy,dy=1,y2-y1
@@ -62,20 +50,37 @@ function los(x1,y1,x2,y2)
 	end
 	
 	local err,e2=dx-dy
+   
 	while not(x1==x2 and y1==y2) do
-		if not frst and iswalkable(x1,y1,"sight") then return false end
-		frst,e2=false,err*2
-		if e2>-dy then
-			err-=dy
-			x1+=sx
+	 	if not frst and not iswalkable(x1,y1,"sight") then return false end
+			frst,e2=false,err*2
+		 	if e2>-dy then
+		  		err-=dy
+		  		x1+=sx
+		 	end
+		 	if e2<dx then
+		  		err+=dx
+		  		y1+=sy
+		 	end
 		end
-		if e2<dx then
-			err+=dx
-			y1+=sy
-		end
-	end
 	return true
 end
+      
+function unfog()
+	local px,py=p_mob.x,p_mob.y
+	for x=0,15 do
+ 	for y=0,15 do
+  	if fog[x][y]==1 
+  		and dist(px,py,x,y)<=p_mob.los 
+  		and (
+  			los(px,py,x,y) 
+  			or xray) then
+				unfogtile(x,y)
+   end
+  end
+ end
+end
+
 
 function blankmap(_dflt)
 	local ret={}
@@ -158,4 +163,8 @@ function calcdist(tx,ty)
 	 	end
 		cand=candnew
 	until #cand==0
+end
+
+function inbounds(x,y)
+	return x>=0 and y>=0 and x<16 and y<16
 end

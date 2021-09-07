@@ -11,9 +11,11 @@ function moveplayer(dx,dy)
 	elseif getmob(destx,desty) then
 		hitmob(player,getmob(destx,desty))
 	else
-		player.x+=dx
-		player.y+=dy
-		
+		if inbounds(player.x+dx,player.y+dy) then
+			player.x+=dx
+			player.y+=dy
+		end
+
 		if dx<0 then
 			player.flip=true
 		elseif dx>0 then

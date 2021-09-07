@@ -1,24 +1,12 @@
 function draw_game()
-	----delete/review
-	--[[if (cpumax<stat(1)) cpumax=stat(1)
-	if (memmax<stat(0)) memmax=stat(0)
-	debug[1]=memmax
-	debug[2]=cpumax]]
 	if fadeperc==1 then return end --fixes flicker
 
 	cls()
 	map()
 
-	for h in all(hazards) do
-		if cansee(player,h) then
-			spr(h.sprt,h.x*8,h.y*8,1,1)
-		end
-	end
-
 	for e in all(entities) do
 		if cansee(player,e) then 
 			spr(getframe(e.ani),e.x*8,e.y*8,1,1,e.flip)
-			--delete/review: put in own function
 		end
 	end
 	
